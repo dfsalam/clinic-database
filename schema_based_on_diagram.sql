@@ -29,4 +29,25 @@ ALTER TABLE invoices
 ADD CONSTRAINT fk_medical_histories
   FOREIGN KEY (medical_history_id)
   REFERENCES medical_histories(id);
-  
+
+CREATE TABLE procedures (
+  id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  medical_histories_id INTEGER,
+  treatment_id INTEGER  
+);
+
+CREATE TABLE treatments (
+  id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  type VARCHAR,
+  name VARCHAR(255)
+);
+
+ALTER TABLE procedures
+ADD CONSTRAINT fk_medical_histories
+  FOREIGN KEY (medical_histories_id)
+  REFERENCES medical_histories(id);
+
+ALTER TABLE procedures
+ADD CONSTRAINT fk_treatments
+  FOREIGN KEY (treatment_id)
+  REFERENCES treatments(id);
