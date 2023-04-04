@@ -51,3 +51,23 @@ ALTER TABLE procedures
 ADD CONSTRAINT fk_treatments
   FOREIGN KEY (treatment_id)
   REFERENCES treatments(id);
+
+CREATE TABLE invoice_items (
+  id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  unit_price DECIMAL,
+  quantity INTEGER,
+  total_price DECIMAL,
+  invoice_id INTEGER,
+  treatment_id INTEGER  
+);
+
+ALTER TABLE invoice_items
+ADD CONSTRAINT fk_invoice
+  FOREIGN KEY (invoice_id)
+  REFERENCES invoices(id);
+
+ALTER TABLE invoice_items
+ADD CONSTRAINT fk_treatment
+  FOREIGN KEY (treatment_id)
+  REFERENCES treatments(id);
+
